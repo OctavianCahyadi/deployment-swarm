@@ -17,7 +17,7 @@ echo -ne '\n'
 echo "------------- Building docker-stack -------------"
 
 
-export DOMAIN_API=api.yudhadhstr.my.id
+export DOMAIN_API=whatsapp.yudhadhstr.my.id
 
 docker compose -f whatsapp-deployment.yml pull && docker stack deploy whatsapp -c whatsapp-deployment.yml --with-registry-auth
 echo -ne '\n'
