@@ -13,7 +13,7 @@ http:
   addr: :5000
   headers:
     X-Content-Type-Options: [nosniff]
-    Access-Control-Allow-Origin: ['https://registry-ui.oadcah.my.id']
+    Access-Control-Allow-Origin: ['https://registry-ui.yudhadhstr.my.id']
     Access-Control-Allow-Methods: ['HEAD', 'GET', 'OPTIONS', 'DELETE']
     Access-Control-Allow-Headers: ['Authorization', 'Accept']
     Access-Control-Max-Age: [1728000]
