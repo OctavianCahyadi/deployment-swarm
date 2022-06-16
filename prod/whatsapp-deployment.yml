@@ -3,8 +3,6 @@ version: '3'
 services:
   baileys:
     image: registry.yudhadhstr.my.id/baileys
-    ports:
-      - "8111:8111"
     networks:
       - traefik-public
     deploy:
@@ -25,7 +23,7 @@ services:
         - traefik.http.routers.whatsapp-https.entrypoints=https
         - traefik.http.routers.whatsapp-https.tls=true
         - traefik.http.routers.whatsapp-https.tls.certresolver=production
-        - traefik.http.services.whatsapp.loadbalancer.server.port=8080
+        - traefik.http.services.whatsapp.loadbalancer.server.port=8111
 
 networks:
   traefik-public:
