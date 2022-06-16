@@ -1,0 +1,286 @@
+[
+    {
+        "id": "spring-master-gl-prod",
+        "execute-command": "/home/oadcah/deployment/production/master-gl/spring-master-gl-prod.sh",
+        "command-working-directory": "/home/oadcah/deployment/production/master-gl",
+        "response-message": "Build Spring Boot Master GL Production",
+        "pass-arguments-to-command": [
+            {
+                "source": "url",
+                "name": "GET-PARAM1"
+            },
+            {
+                "source": "payload",
+                "name": "repository.owner"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM2"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM3"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM4"
+            },
+            {
+                "source": "payload",
+                "name": "repository.name"
+            },
+            {
+                "source": "payload",
+                "name": "push_data.tag"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "NbtMEcZG7uMsGq3P",
+                "parameter": {
+                    "source": "url",
+                    "name": "GET-PARAM1"
+                }
+            }
+        }
+    },
+    {
+        "id": "spring-master-gl-dev",
+        "execute-command": "/home/oadcah/deployment/development/master-gl/spring-master-gl-dev.sh",
+        "command-working-directory": "/home/oadcah/deployment/development/master-gl",
+        "response-message": "Build Spring Boot Master GL Development",
+        "pass-arguments-to-command": [
+            {
+                "source": "url",
+                "name": "GET-PARAM1"
+            },
+            {
+                "source": "payload",
+                "name": "repository.owner"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM2"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM3"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM4"
+            },
+            {
+                "source": "payload",
+                "name": "repository.name"
+            },
+            {
+                "source": "payload",
+                "name": "push_data.tag"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "NbtMEcZG7uMsGq3P",
+                "parameter": {
+                    "source": "url",
+                    "name": "GET-PARAM1"
+                }
+            }
+        }
+    },
+    {
+        "id": "spring-auth-prod",
+        "execute-command": "/home/oadcah/deployment/production/auth/spring-auth-prod.sh",
+        "command-working-directory": "/home/oadcah/deployment/production/auth",
+        "response-message": "Build Spring Boot Auth Production",
+        "pass-arguments-to-command": [
+            {
+                "source": "url",
+                "name": "GET-PARAM1"
+            },
+            {
+                "source": "payload",
+                "name": "repository.owner"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM2"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM3"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM4"
+            },
+            {
+                "source": "payload",
+                "name": "repository.name"
+            },
+            {
+                "source": "payload",
+                "name": "push_data.tag"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "NbtMEcZG7uMsGq3P",
+                "parameter": {
+                    "source": "url",
+                    "name": "GET-PARAM1"
+                }
+            }
+        }
+    },
+    {
+        "id": "spring-auth-dev",
+        "execute-command": "/home/oadcah/deployment/development/auth/spring-auth-dev.sh",
+        "command-working-directory": "/home/oadcah/deployment/development/auth",
+        "response-message": "Build Spring Boot Auth Development",
+        "pass-arguments-to-command": [
+            {
+                "source": "url",
+                "name": "GET-PARAM1"
+            },
+            {
+                "source": "payload",
+                "name": "repository.owner"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM2"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM3"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM4"
+            },
+            {
+                "source": "payload",
+                "name": "repository.name"
+            },
+            {
+                "source": "payload",
+                "name": "push_data.tag"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "NbtMEcZG7uMsGq3P",
+                "parameter": {
+                    "source": "url",
+                    "name": "GET-PARAM1"
+                }
+            }
+        }
+    },
+    {
+        "id": "reactjs-master-gl-prod",
+        "execute-command": "/home/oadcah/deployment/production/master-gl/reactjs-master-gl-prod.sh",
+        "command-working-directory": "/home/oadcah/deployment/production/master-gl",
+        "response-message": "Build React Js ProductionF",
+        "pass-arguments-to-command": [
+            {
+                "source": "url",
+                "name": "GET-PARAM"
+            },
+            {
+                "source": "payload",
+                "name": "repository.owner"
+            },
+            {
+                "source": "payload",
+                "name": "repository.name"
+            },
+            {
+                "source": "payload",
+                "name": "push_data.tag"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "NbtMEcZG7uMsGq3P",
+                "parameter": {
+                    "source": "url",
+                    "name": "GET-PARAM"
+                }
+            }
+        }
+    },
+    {
+        "id": "reactjs-master-gl-dev",
+        "execute-command": "/home/oadcah/deployment/development/master-gl/reactjs-master-gl-dev.sh",
+        "command-working-directory": "/home/oadcah/deployment/development/master-gl",
+        "response-message": "Build React Js Development",
+        "pass-arguments-to-command": [
+            {
+                "source": "url",
+                "name": "GET-PARAM"
+            },
+            {
+                "source": "payload",
+                "name": "repository.owner"
+            },
+            {
+                "source": "payload",
+                "name": "repository.name"
+            },
+            {
+                "source": "payload",
+                "name": "push_data.tag"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "NbtMEcZG7uMsGq3P",
+                "parameter": {
+                    "source": "url",
+                    "name": "GET-PARAM"
+                }
+            }
+        }
+    },
+    {
+        "id": "start-service",
+        "execute-command": "/home/oadcah/deployment/startService.sh",
+        "command-working-directory": "/home/oadcah/deployment",
+        "response-message": "Start all service",
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "8R9TBUCVEXFYG2J3K4N6P7Q9SATBUDWEXFZH2J3M5N6P8R9SAUCVDWFYGZ",
+                "parameter": {
+                    "source": "url",
+                    "name": "GET-PARAM"
+                }
+            }
+        }
+    },
+    {
+        "id": "update-deployment",
+        "execute-command": "/home/oadcah/deployment/update-deployment.sh",
+        "command-working-directory": "/home/oadcah/deployment",
+        "response-message": "Pull new update on Deployment",
+        "pass-arguments-to-command": [
+            {
+                "source": "url",
+                "name": "GET-PARAM"
+            },
+            {
+                "source": "url",
+                "name": "GET-PARAM2"
+            }
+        ]
+    }
+]

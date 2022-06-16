@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  baileys:
+    image: registry.yudhadhstr.my.id/baileys
+    ports:
+      - "8111:8111"
+    networks:
+      - traefik-public
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 20s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.spring-auth-dev-http.rule=Host(`${DOMAIN_API?Variable not set}`) && PathPrefix(`/auth`)
+        - traefik.http.routers.spring-auth-dev-http.entrypoints=http
+        - traefik.http.routers.spring-auth-dev-http.middlewares=https-redirect
+        - traefik.http.routers.spring-auth-dev-https.rule=Host(`${DOMAIN_API?Variable not set}`) && PathPrefix(`/auth`)
+        - traefik.http.routers.spring-auth-dev-https.entrypoints=https
+        - traefik.http.routers.spring-auth-dev-https.tls=true
+        - traefik.http.routers.spring-auth-dev-https.tls.certresolver=production
+        - traefik.http.services.spring-auth-dev.loadbalancer.server.port=8080
+
+networks:
+  traefik-public:
+    external: true

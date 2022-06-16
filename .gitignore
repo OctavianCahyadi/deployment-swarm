@@ -1,0 +1,7 @@
+
+devops/
+tamp/
+
+### VS Code ###
+.vscode/
+src/main/resources/application.properties

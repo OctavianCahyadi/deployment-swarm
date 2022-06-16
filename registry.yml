@@ -1,0 +1,75 @@
+version: "3.9"
+
+configs:
+  htpasswd_config:
+    file: ./config/registry/htpasswd
+  registry_config:
+    file: ./config/registry/config.yml
+
+volumes:
+  registry-data:
+
+networks:
+  traefik-public:
+    external: true
+
+services:
+  registry:
+    image: registry:2.8.0
+    volumes:
+      - registry-data:/var/lib/registry
+    configs:
+      - source: htpasswd_config
+        target: /etc/docker/registry/htpasswd
+      - source: registry_config
+        target: /etc/docker/registry/config.yml
+    deploy:
+      placement:
+        constraints:
+          - node.labels.registry.data == true
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.registry-http.rule=Host(`${DOMAIN_REGISTRY?Variable not set}`)
+        - traefik.http.routers.registry-http.entrypoints=http
+        - traefik.http.routers.registry-http.middlewares=https-redirect
+        - traefik.http.routers.registry-https.rule=Host(`${DOMAIN_REGISTRY?Variable not set}`)
+        - traefik.http.routers.registry-https.entrypoints=https
+        - traefik.http.routers.registry-https.tls=true
+        - traefik.http.routers.registry-https.tls.certresolver=production
+        - traefik.http.services.registry.loadbalancer.server.port=5000
+        - traefik.registry-ui.passHostHeader:true
+    networks:
+      - traefik-public
+
+  ui:
+    image: joxit/docker-registry-ui:latest
+    environment:
+        - DELETE_IMAGES=true
+        - REGISTRY_TITLE=${DOMAIN_REGISTRY?Variable not set}
+        - NGINX_PROXY_PASS_URL=http://registry:5000
+        - SINGLE_REGISTRY=true
+    depends_on:
+      - registry
+    networks:
+      - traefik-public
+    deploy:
+      placement:
+        constraints:
+          - node.labels.registry.data == true
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.registry-ui-http.rule=Host(`${DOMAIN_REGISTRY_UI?Variable not set}`)
+        - traefik.http.routers.registry-ui-http.entrypoints=http
+        - traefik.http.routers.registry-ui-http.middlewares=https-redirect
+        - traefik.http.routers.registry-ui-https.rule=Host(`${DOMAIN_REGISTRY_UI?Variable not set}`)
+        - traefik.http.routers.registry-ui-https.entrypoints=https
+        - traefik.http.routers.registry-ui-https.tls=true
+        - traefik.http.routers.registry-ui-https.tls.certresolver=production
+        - traefik.http.services.registry-ui.loadbalancer.server.port=80
+        - traefik.http.middlewares.registry-ui-auth.basicauth.usersfile=/registry/htpasswd
+        - traefik.http.routers.registry-ui-https.middlewares=registry-ui-auth
+        - traefik.registry-ui.passHostHeader:true
