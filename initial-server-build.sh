@@ -21,10 +21,10 @@ echo "workdir = ${WORKDIR}"
 
 mkdir -p devops/traefik/cert
 
-docker-compose -f treafic.yml pull
-docker-compose -f portainer.yml pull
-docker-compose -f swarmpit.yml pull
-docker-compose -f registry.yml pull
+docker compose -f treafic.yml pull
+docker compose -f portainer.yml pull
+docker compose -f swarmpit.yml pull
+docker compose -f registry.yml pull
 docker stack deploy traefik -c treafic.yml
 docker stack deploy portainer -c portainer.yml
 docker stack deploy swarmpit -c swarmpit.yml
