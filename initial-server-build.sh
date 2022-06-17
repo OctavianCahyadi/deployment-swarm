@@ -6,6 +6,8 @@ export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
 docker node update --label-add traefik-public.traefik-public-certificates=true $NODE_ID
 docker node update --label-add portainer.portainer-data=true $NODE_ID
 docker node update --label-add registry.data=true $NODE_ID
+docker node update --label-add swarmpit.influx-data=true $NODE_ID
+docker node update --label-add swarmpit.db-data=true $NODE_ID
 
 export EMAIL=mr.octavianz@gmail.com
 
