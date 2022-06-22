@@ -7,6 +7,9 @@ services:
       - traefik-public
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.labels.whatsapp.data=true
       restart_policy:
         condition: on-failure
         delay: 20s
@@ -28,3 +31,6 @@ services:
 networks:
   traefik-public:
     external: true
+
+volumes:
+  baileys-session-data:
